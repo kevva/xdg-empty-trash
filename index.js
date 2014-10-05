@@ -14,45 +14,46 @@ var rm = require('rimraf');
 
 module.exports = function (cb) {
 	var home = process.env.XDG_DATA_HOME || path.join(process.env.HOME,'.local/share');
-	var paths = [];
+	var paths = [
+		path.join(home, 'Trash/files'),
+		path.join(home, 'Trash/info')
+	];
 
-	fs.readdir(path.join(home, 'Trash/files'), function (err, files) {
-		if (err) {
-			cb(err);
-			return;
-		}
-
-		files.forEach(function (file) {
-			paths.push(path.join(home, 'Trash/files', file));
-		});
-
-		fs.readdir(path.join(home, 'Trash/info'), function (err, files) {
+	each(paths, function (p, i, next) {
+		fs.readdir(p, function (err, files) {
 			if (err) {
 				cb(err);
 				return;
 			}
 
-			files.forEach(function (file) {
-				paths.push(path.join(home, 'Trash/info', file));
+			files = files.map(function (file) {
+				return path.join(p, file);
 			});
 
-			each(paths, function (p, i, next) {
-				rm(p, function (err) {
+			each(files, function (file, i, n) {
+				rm(file, function (err) {
 					if (err) {
-						next(err);
+						n(err);
 						return;
 					}
 
-					next();
+					n();
 				});
 			}, function (err) {
 				if (err) {
-					cb(err);
+					next(err);
 					return;
 				}
 
-				cb();
+				next();
 			});
 		});
+	}, function (err) {
+		if (err) {
+			cb(err);
+			return;
+		}
+
+		cb();
 	});
 };
