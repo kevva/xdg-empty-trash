@@ -22,6 +22,10 @@ empty(function (err) {
 });
 ```
 
+## CLI
+
+See the [empty-trash](https://github.com/sindresorhus/empty-trash#cli) CLI.
+
 ## License
 
 MIT © [Kevin Mårtensson](https://github.com/kevva)
