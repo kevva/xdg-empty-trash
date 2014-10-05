@@ -15,8 +15,8 @@ var rm = require('rimraf');
 module.exports = function (cb) {
 	var home = process.env.XDG_DATA_HOME || path.join(process.env.HOME,'.local/share');
 	var paths = [
-		path.join(home, 'Trash/files'),
-		path.join(home, 'Trash/info')
+		path.join(home, 'Trash', 'files'),
+		path.join(home, 'Trash', 'info')
 	];
 
 	each(paths, function (p, i, next) {
