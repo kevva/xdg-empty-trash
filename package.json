@@ -1,0 +1,39 @@
+{
+  "name": "xdg-empty-trash",
+  "version": "1.0.0",
+  "description": "Empty trash on Linux",
+  "license": "MIT",
+  "repository": "kevva/xdg-empty-trash",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "delete",
+    "dir",
+    "empty",
+    "file",
+    "linux",
+    "recycle",
+    "trash",
+    "xdg"
+  ],
+  "dependencies": {
+    "each-async": "^1.1.0",
+    "rimraf": "^2.2.8"
+  },
+  "devDependencies": {
+    "ava": "^0.0.4",
+    "xdg-trash": "^1.0.0"
+  }
+}
