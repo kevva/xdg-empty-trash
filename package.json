@@ -30,7 +30,8 @@
   ],
   "dependencies": {
     "each-async": "^1.1.0",
-    "rimraf": "^2.2.8"
+    "rimraf": "^2.2.8",
+    "xdg-basedir": "^1.0.0"
   },
   "devDependencies": {
     "ava": "^0.0.4",
