@@ -13,6 +13,12 @@ var rm = require('rimraf');
  */
 
 module.exports = function (cb) {
+	cb = cb || function () {};
+
+	if (process.platform !== 'linux') {
+		cb(new Error('Only Linux systems are supported'));
+	}
+
 	var home = process.env.XDG_DATA_HOME || path.join(process.env.HOME,'.local/share');
 	var paths = [
 		path.join(home, 'Trash', 'files'),
