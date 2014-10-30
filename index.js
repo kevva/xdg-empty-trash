@@ -17,7 +17,7 @@ module.exports = function (cb) {
 	cb = cb || function () {};
 
 	if (process.platform !== 'linux') {
-		cb(new Error('Only Linux systems are supported'));
+		throw new Error('Only Linux systems are supported');
 	}
 
 	trashdir(function (err, dir) {
