@@ -13,16 +13,16 @@ test('empty trash', function (t) {
 	var files = path.join(home, 'Trash/files');
 
 	fs.writeFile('file', '', function (err) {
-		t.assert(!err);
+		t.assert(!err, err);
 
 		trash(['file'], function (err) {
-			t.assert(!err);
+			t.assert(!err, err);
 
 			empty(function (err) {
-				t.assert(!err);
+				t.assert(!err, err);
 
 				fs.readdir(files, function (err, paths) {
-					t.assert(!err);
+					t.assert(!err, err);
 					t.assert(!paths.length);
 				});
 			});

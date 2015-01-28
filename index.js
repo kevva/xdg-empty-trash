@@ -6,13 +6,6 @@ var path = require('path');
 var rm = require('rimraf');
 var trashdir = require('xdg-trashdir');
 
-/**
- * Empty trash on Linux
- *
- * @param {Function} cb
- * @api public
- */
-
 module.exports = function (cb) {
 	cb = cb || function () {};
 
