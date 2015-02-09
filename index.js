@@ -1,10 +1,10 @@
 'use strict';
 
-var each = require('each-async');
+var eachAsync = require('each-async');
 var fs = require('fs');
 var path = require('path');
 var rm = require('rimraf');
-var trashdir = require('xdg-trashdir');
+var xdgTrashDir = require('xdg-trashdir');
 
 module.exports = function (cb) {
 	cb = cb || function () {};
@@ -13,7 +13,7 @@ module.exports = function (cb) {
 		throw new Error('Only Linux systems are supported');
 	}
 
-	trashdir(function (err, dir) {
+	xdgTrashDir(function (err, dir) {
 		if (err) {
 			cb(err);
 			return;
@@ -24,7 +24,7 @@ module.exports = function (cb) {
 			path.join(dir, 'info')
 		];
 
-		each(paths, function (p, i, next) {
+		eachAsync(paths, function (p, i, next) {
 			fs.readdir(p, function (err, files) {
 				if (err) {
 					cb(err);
@@ -35,7 +35,7 @@ module.exports = function (cb) {
 					return path.join(p, file);
 				});
 
-				each(files, function (file, i, n) {
+				eachAsync(files, function (file, i, n) {
 					rm(file, function (err) {
 						if (err) {
 							n(err);

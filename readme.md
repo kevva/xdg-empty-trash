@@ -11,9 +11,9 @@ $ npm install --save xdg-empty-trash
 ## Usage
 
 ```js
-var empty = require('xdg-empty-trash');
+var xdgEmptyTrash = require('xdg-empty-trash');
 
-empty(function (err) {
+xdgEmptyTrash(function (err) {
 	if (err) {
 		throw err;
 	}
