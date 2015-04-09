@@ -1,9 +1,9 @@
 'use strict';
 
-var eachAsync = require('each-async');
 var fs = require('fs');
 var path = require('path');
-var rm = require('rimraf');
+var eachAsync = require('each-async');
+var rimraf = require('rimraf');
 var xdgTrashDir = require('xdg-trashdir');
 
 module.exports = function (cb) {
@@ -36,7 +36,7 @@ module.exports = function (cb) {
 				});
 
 				eachAsync(files, function (file, i, n) {
-					rm(file, function (err) {
+					rimraf(file, function (err) {
 						if (err) {
 							n(err);
 							return;
