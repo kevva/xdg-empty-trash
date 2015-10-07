@@ -30,11 +30,13 @@
   ],
   "dependencies": {
     "each-async": "^1.1.0",
+    "pify": "^2.2.0",
+    "pinkie-promise": "^1.0.0",
     "rimraf": "^2.2.8",
-    "xdg-trashdir": "^1.0.0"
+    "xdg-trashdir": "^2.0.0"
   },
   "devDependencies": {
     "ava": "^0.0.4",
-    "xdg-trash": "^1.0.0"
+    "xdg-trash": "^2.0.1"
   }
 }

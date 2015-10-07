@@ -13,9 +13,9 @@ $ npm install --save xdg-empty-trash
 ## Usage
 
 ```js
-var xdgEmptyTrash = require('xdg-empty-trash');
+const xdgEmptyTrash = require('xdg-empty-trash');
 
-xdgEmptyTrash(function (err) {
+xdgEmptyTrash().then(() => {
 	console.log('Trash successfully emptied!');
 });
 ```
@@ -23,15 +23,9 @@ xdgEmptyTrash(function (err) {
 
 ## API
 
-### xdgEmptyTrash(callback)
+### xdgEmptyTrash()
 
-Empties the trash.
-
-#### callback(err)
-
-Type: `function`
-
-Returns nothing but a possible exception.
+Empties the trash. Returns a promise that resolves nothing.
 
 
 ## CLI

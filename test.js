@@ -7,19 +7,16 @@ var xdgTrashdir = require('xdg-trashdir');
 var xdgEmptyTrash = require('./');
 
 test('empty trash', function (t) {
-	t.plan(4);
+	t.plan(2);
 
-	xdgTrashdir(function (err, dir) {
-		t.assert(!err, err);
-
+	xdgTrashdir().then(function (dir) {
 		fs.writeFileSync('f0', '');
 		dir = path.join(dir, 'files');
 
-		xdgTrash(['f0'], function (err) {
-			t.assert(!err, err);
+		xdgTrash(['f0']).then(function () {
+			t.assert(fs.readdirSync(dir).length, fs.readdirSync(dir).length);
 
-			xdgEmptyTrash(function (err) {
-				t.assert(!err, err);
+			xdgEmptyTrash().then(function () {
 				t.assert(!fs.readdirSync(dir).length, fs.readdirSync(dir).length);
 			});
 		});
