@@ -1,6 +1,6 @@
 {
   "name": "xdg-empty-trash",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Empty trash on Linux",
   "license": "MIT",
   "repository": "kevva/xdg-empty-trash",
