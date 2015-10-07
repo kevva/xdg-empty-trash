@@ -1,24 +1,21 @@
-'use strict';
-var fs = require('fs');
-var path = require('path');
-var test = require('ava');
-var xdgTrash = require('xdg-trash');
-var xdgTrashdir = require('xdg-trashdir');
-var xdgEmptyTrash = require('./');
+import fs from 'fs';
+import path from 'path';
+import test from 'ava';
+import xdgTrash from 'xdg-trash';
+import xdgTrashdir from 'xdg-trashdir';
+import fn from './';
 
-test('empty trash', function (t) {
+test('empty trash', async t => {
 	t.plan(2);
 
-	xdgTrashdir().then(function (dir) {
-		fs.writeFileSync('f0', '');
-		dir = path.join(dir, 'files');
+	const dir = await xdgTrashdir();
 
-		xdgTrash(['f0']).then(function () {
-			t.assert(fs.readdirSync(dir).length, fs.readdirSync(dir).length);
+	fs.writeFileSync('f0', '');
+	const files = path.join(dir, 'files');
 
-			xdgEmptyTrash().then(function () {
-				t.assert(!fs.readdirSync(dir).length, fs.readdirSync(dir).length);
-			});
-		});
-	});
+	await xdgTrash(['f0']);
+	t.ok(fs.readdirSync(files).length);
+
+	await fn();
+	t.is(fs.readdirSync(files).length, 0);
 });
